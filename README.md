@@ -135,20 +135,25 @@ Now lets try to find created nodes and relationship between them.
 
 To simply find Module and return a node: 
 `match(gt:Module{name: "GRAPH THEORY"}) return gt`
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/Node.PNG)
 
 To find multiple nodes at once: 
 `match(gt:Module{name: "GRAPH THEORY"}),(r145:LectureRoom{number: 145})
 return gt, r145`
 This will also return relationship between nodes.
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/twoNodes.PNG)
 
 It is possible to search for relationship and it's nodes like this too: 
 `match(gt:Module{name: "GRAPH THEORY"})-[r]->(r145:LectureRoom{number: 145})
 return r, gt, r145`
 
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/twoNodesRelationship.PNG)
+
 To find all relationships with the lecture rooms:
 `match(gt:Module{name: "GRAPH THEORY"})-[r]->(lr:LectureRoom)
 return r, gt, lr`
 
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/relationships.PNG)
 
 **Quering Rooms**
 
@@ -156,7 +161,9 @@ Now lets try to query all Lab Rooms that have classes starting at 16:00 on Monda
 
 `match(fr:LabRoom)<-[r{day: "Monday", start: 16}]-(n) return fr, r, n`
 
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/QueringRooms.PNG)
 
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/QueringRoomsRows.PNG)
 **Demo Database for GMIT**
 
-
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/DatabaseDemo.PNG)
