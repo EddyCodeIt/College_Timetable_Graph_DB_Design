@@ -59,23 +59,27 @@ DBMS's rigid schemas make it difficult to add different connections between data
 
 
 * How can I break data into groups and use Neo4j to help me organising my data?
+
 Neo4j syntaxis allows to place a Lable on an entity. Labels in neo4j representing a groups that entity can become part of. One entity can have many labels. It allows to have a shortcuts in data search patterns for faster data quering. 
 
 * How would my data relate to one another? Design plan:
-- Add plan image here...
 
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/design_plan.jpg)
 
-	
-	
+On a diagram I have 5 groups a node, in Neo4j, can possible belong to and properties this nodes can have. 
+Than I thought of a Module not only as a subject to be taught as a part of Course, but also as an event that can occur in
+a particular room. The Module, an event, can be related to a room with some properties like time it start, ends, a day of the week
+and also a type of an event it is. 
+Each Module can also be related to some Teacher it thaught by.  
+It is possible to expand this graph limitlessly with new groups like Course and add relationships to Modules, than create
+a Student and related it to a course. Neo4j allows to handle data this way. 
+
 ## Starting with Neo4j 
 * Where to donwload and how to install
 1) Download [link] (https://neo4j.com/download/)
 2) Installation [guide] (https://neo4j.com/docs/operations-manual/current/installation/)
 
-* My recommendations...
-1. I would recommend to create separate directories for each database you creating. 
-2
-3
+It is recommended to create separated directories for each database you creating. 
 
 ## How to use Neo4j to store data
 * Nodes
@@ -97,12 +101,62 @@ One node can have many different relationships with other nodes. Pair of nodes a
 between each other.
 
 ## Working with Neo4j
-* Node CRUDs
-* Relationship CRUDs
-* Simple Quering commands
+
+To work with Neo4j, I used following [Cheat Sheet](https://neo4j.com/docs/cypher-refcard/current/) with Cypher queries syntaxis.
+
+Lets examin few queries I used to create database. 
+
+**Creating Module** 
+
+`Create(gt:Module{name: "GRAPH THEORY" , credits: 5, lectures_hpw: 2, labs_hpw: 1})`
+
+Create() creates new nodes and relationships.
+Function parameter `gt` is a naming convension for this specific node, you can name it any way you like. It is kept in memory until Play (Execution mechanism in Neo4j) has fully executed all given statements.
+You can execute multiple queries at once, for example creating a new node and use its naming convension
+to link a relationship to it. 
+`:Module` is a Label this object is assigned to. 
+Inside braces `{name: "GRAPH THEORY"}` we specify what properties we want a node to have.
+
+**Creating a Relationship** 
+
+We can use Graph Theory Module `gt` we've created before.
+Let's just create another node for room and make a relationship between those two nodes we have.
+
+`Create(r145:LectureRoom{number: 145, capacity: 20})`
+
+`Create(gt)-[:HAPPEN_IN {start: 9, end: 10, day: "Monday", type: "lab", group: "A"}]->(r145)`
+
+Creating a relationship follows this syntaxis: ()-[]->()
+where first node() has a relationship [] with second node ()
+
+**Quering Database** 
+
+Now lets try to find created nodes and relationship between them.
+
+To simply find Module and return a node: 
+`match(gt:Module{name: "GRAPH THEORY"}) return gt`
+
+To find multiple nodes at once: 
+`match(gt:Module{name: "GRAPH THEORY"}),(r145:LectureRoom{number: 145})
+return gt, r145`
+This will also return relationship between nodes.
+
+It is possible to search for relationship and it's nodes like this too: 
+`match(gt:Module{name: "GRAPH THEORY"})-[r]->(r145:LectureRoom{number: 145})
+return r, gt, r145`
+
+To find all relationships with the lecture rooms:
+`match(gt:Module{name: "GRAPH THEORY"})-[r]->(lr:LectureRoom)
+return r, gt, lr`
 
 
-	
+**Quering Rooms**
 
+Now lets try to query all Lab Rooms that have classes starting at 16:00 on Monday.
+
+`match(fr:LabRoom)<-[r{day: "Monday", start: 16}]-(n) return fr, r, n`
+
+
+**Demo Database for GMIT**
 
 
