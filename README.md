@@ -64,7 +64,7 @@ Neo4j syntaxis allows to place a Lable on an entity. Labels in neo4j representin
 
 * How would my data relate to one another? Design plan:
 
-![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/design.jpg)
+![](https://github.com/EddyCodeIt/College_Timetable_Graph_DB_Design/blob/master/Doc%20Snippets/desing.jpg)
 
 On a diagram I have 5 groups a node, in Neo4j, can possible belong to and properties this nodes can have. 
 Than I thought of a Module not only as a subject to be taught as a part of Course, but also as an event that can occur in
