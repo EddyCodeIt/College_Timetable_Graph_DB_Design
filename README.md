@@ -10,9 +10,9 @@ that requires thorough analysation and planning at the beggining of system devel
 a big problems later or even complete system failure. 
 
 For this project I will attempt to deliver design of a timetable system using Graph Theory fundamentals 
-and a Graph Database to optimise composition of timetable on a semester-to-semester bases. 
+and a Graph Database to optimise composition of database for a timetable.
 	
-To keep things simple for the start, I will use timetables for Second and Third years Software Development Courses. 
+To keep things simple for the start, I will use my current timetable for Semester 6. 
 This should help me to identify potential data types used to compose timetables, as well as give me some initial values to kick off with.
 To store data, I will use Neo4j database, a Graph Database that is providing online database management system 
 that allows to manipulate Graph Data Models. Typical Graph Model would be composed of two elements: a node and a relationship.
@@ -48,19 +48,23 @@ DBMS's rigid schemas make it difficult to add different connections between data
 	
 ## Timetable System Data
 * What kind of data database would need to store?
-1) Days of the week from Monday to Friday
-2) Time slot for every hour of a day from 9 am to 6 pm
-3) Room number inside campus or pre fab rooms around campus. If it is computer lab, room identifier.
-4) Course ID
-5) Module Name
-6) Group identifier, e.g., Gr A, B, C, etc..
+1) Teachers
+2) Lecture rooms
+3) Laboratory rooms
+4) Any other special kinds of rooms
+5) Courses
+6) Modules of this courses
+7) Student
+8) Any other object that can represent an entity 
 
-* How can I break data into groups and use Neo4j to help me organising my data
-For data type from above, I would create a group, in Neo4j it would be called Label, or a relationship.
-This would sort data into organised structure.
 
-* How would my data relate to one another? Design plan... 
+* How can I break data into groups and use Neo4j to help me organising my data?
+Neo4j syntaxis allows to place a Lable on an entity. Labels in neo4j representing a groups that entity can become part of. One entity can have many labels. It allows to have a shortcuts in data search patterns for faster data quering. 
+
+* How would my data relate to one another? Design plan:
 - Add plan image here...
+
+
 	
 	
 ## Starting with Neo4j 
