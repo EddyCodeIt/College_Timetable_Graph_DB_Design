@@ -93,8 +93,8 @@ One node can have many different relationships with other nodes. Pair of nodes a
 between each other.
 
 ## Working with Neo4j
-* Node CRUD
-* Relationship CRUD
+* Node CRUDs
+* Relationship CRUDs
 * Simple Quering commands
 
 
